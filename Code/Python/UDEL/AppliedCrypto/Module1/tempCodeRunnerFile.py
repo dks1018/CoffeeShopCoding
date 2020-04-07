@@ -1,0 +1,1 @@
+crypto4 = open("C:\\Users\\Darius\\Desktop\\BlackhatChallenge\\BlackHatChallenge4.txt","r")
