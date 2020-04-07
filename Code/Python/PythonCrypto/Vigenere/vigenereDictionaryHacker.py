@@ -1,7 +1,7 @@
 import detectEnglish, vigenereCipher, pyperclip
 
 def main():
-    ciphertext2 = """Tzx isnz eccjxkg nfq lol mys bbqq I lxcz."""
+    ciphertext = """Tzx isnz eccjxkg nfq lol mys bbqq I lxcz."""
     hackedMessage = hackVigenereDictionary(ciphertext)
 
     if hackedMessage != None:
