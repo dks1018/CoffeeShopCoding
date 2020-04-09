@@ -1,0 +1,82 @@
+import java.util.Scanner;
+import java.io.*;
+import java.lang.*;
+
+
+class Main {
+  public static void main(String[] args) {
+    
+    // Establish scanner to read user input into variable 'input '
+    Scanner input = new Scanner(System.in);
+
+    // Establish base condition for loop 
+    boolean exit = false;
+
+    // While the user keeps to add more computer to enter 
+    while(exit != true){
+      // Create a Computer object
+      Computer cp = new Computer();
+
+      // Informative message to user 
+      System.out.println("Enter the follwing information about your computer ");
+
+      // Prompt user for computer owner 
+      System.out.println("What is the name of the owner? ");
+
+
+      // Input validation 
+      // Input can be validated with a if statement. However,
+      // infinite loop might be more dynamic user experience.
+      // Loop until input is not correct. 
+      while (true){
+        // Capture user input for computer owner 
+        String name = input.nextLine();
+
+        // If input is valid set the correct variable in object and break from the loop 
+        if (name.length()!= 0){
+          // Set the owner in the object using setter in Computer class
+          cp.setOwner(name);
+          break;
+        }
+        // Clarify input parameters for user 
+        System.out.println("Enter a name. What is the name of the owner? ");
+      }
+
+      // TODO: Capture remaining information of the computer object (use setter)
+
+      // Display the current computer unformation
+      System.out.println("Computer owner is " + cp.getOwner()
+      );
+
+      //TODO: Display all the information the user eneter anout the computer object. (use getter). 
+      // Call getTotalCost() to obtain object cost 
+      
+      System.out.println("Would you like to add a new computer? Type '1' for yes and '2' for no.");
+
+      while (true){
+
+        // Capture user selection 
+        int choice = input.nextInt();
+
+        // If user wants to exit, break loop and update boolean to break from outer loop
+        if (choice == 2){
+            exit = true;
+            break;
+        }
+
+        // If user wants to add another computer break from input selection loop and move to another iteration of outer loop 
+        if (choice == 1)
+          break;
+
+        // Clarify input parameters for user 
+        System.out.println("Enter a valid number. Would you like to add a new computer? Type '1' for yes and '2' for no.");
+        
+      }
+      
+        
+    }
+
+    System.out.println("Goodbye.");
+
+  }
+}
