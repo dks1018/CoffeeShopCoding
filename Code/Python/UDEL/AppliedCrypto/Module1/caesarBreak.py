@@ -2,7 +2,8 @@
 # http://inventwithpython.com/hacking (BSD Licensed)
  
 message = 'GUVF VF ZL FRPERG ZRFFNTR.'
-crypto4 = open("C:\\Users\\Darius\\Desktop\\BlackhatChallenge\\BlackHatChallenge4.txt","r")
+#crypto4 = open("C:\\Users\\Darius\\Desktop\\BlackhatChallenge\\BlackHatChallenge4.txt","r")
+crypto4 = open("C:\\Users\\dks10\\OneDrive\\Desktop\\testfile.txt","r")
 content4 = crypto4.read()
 message1 = 'ymwpifempskmspjatktnbairximwgmgvfjamszatjamkspjamsfkjamrxkmsjammefipckmsgpspwmzmppskfirspgfpmspmwmemkpsfgyrsnwjxmymswfwswrjafwbwmemkxmqsipmwmemkxmzknmisetfgjatpmjakmmefzmpjktjswgfzswsivsrpxmatcmqnitqrtnatjasjmfpjvfwxktjamkjtatjitemsiijafwbpskmkmsgrfqtnkyfwgpxmptsgemwjnkmkamjasjbtmptnjjtymmjvasjmemkysrztymvmiijasjfpvasjvmsiigtfwjamvtkigtwmvsrtkswtjamkjfymfpjambkmsjcarpfzfswpjkmsypysrpckfwbqktytwmptnkzmswgrmjptymxmzimskswgptymxmqtnicmtcimspdrtnqtkzkfjfzfpyxnjjamrtwirvswjcksfpmimemksbmfpmemkrjafwbvspvasjfnpmgjtpsrgtwjxmbfwjtckrjfiirtnasembtjjamitwbskytwrtnkpfgmatwmpjcmtcimgtwjafgmjamfkgmmgp'
 newmessage = message1.upper()
