@@ -54,3 +54,10 @@ elems = soup.select('#buyNewSection > h5 > div > div.a-column.a-span8.a-text-rig
 
 print(elems)
 print(elems[0].text.strip())
+
+
+res1 = requests.get('https://www.amazon.com/Automate-Boring-Stuff-Python-Programming/dp/1593275994')
+soup = bs4.BeautifulSoup(res1.text,'html.parser')
+elems = soup.select('#buyNewSection > h5 > div > div.a-column.a-span8.a-text-right.a-span-last > div > span.a-size-medium.a-color-price.offer-price.a-text-normal')
+
+print(elems)
