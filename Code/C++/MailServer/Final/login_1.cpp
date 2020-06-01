@@ -5,106 +5,113 @@
 
 using namespace std;
 
-class LoginManager
+class Manager_Func
 {
  public:
 
-    LoginManager()
+    Manager_Func()
     {
-        accessGranted = 0;
+        access = 0;
     }
-    void login()
+    void login_func()
     {
-        cout << "Ahem. A username is required. \nUsername:";
-        cin >> userNameAttempt;
+        cout << "Do you have an account? Enter Y (Yes) or N (No).";
+        cin >> answer;
 
-        int usrID = checkFile(userNameAttempt, "users.dat");
+        if(answer == "N")
+        {
+            sign_up();
+        }
+        cout << "Enter your username and then password\nUsername:";
+        cin >> user_input_entered;
+
+        int usrID = content_check(user_input_entered, "users.txt");
         if(usrID != 0)
         {
             cout << "Password:";
-            cin >> passwordAttempt;
+            cin >> pass_input_entered;
 
-            int pwdID = checkFile(passwordAttempt, "pswds.dat");
+            int pwdID = content_check(pass_input_entered, "pass.txt");
             if(usrID == pwdID)
             {
-                cout << "Hey, thats right. \n" << endl;;
-                login();
+                cout << "Successful Login!\n" << endl;;
+                //login_func();
 
             }
             else
             {
-                cout << "Not even close." << endl;
-                login();
+                cout << "Incorrect Username or Password" << endl;
+                login_func();
             }
         }
         else
         {
-            cout << "Nice try, bud." << endl;
-            login();
+            cout << "Incorrect Username or Password" << endl;
+            login_func();
         }
     }
 
-    void addUser(const string username, const string password)
+    void user_add_to_file(const string username, const string password)
     {
-        if(checkFile(username, "users.dat") != 0)
+        if(content_check(username, "users.txt") != 0)
         {
             cout << "That username is not availble." << endl;
             return;
         }
 
-        int id = 1 + getLastID();
-        saveFile(username, "users.dat", id);
-        saveFile(password, "pswds.dat", id);
+        int UID = 1 + increment_ID();
+        saveFile(username, "users.txt", UID);
+        saveFile(password, "pass.txt", UID);
     }
 
-    int getLastID()
+    int increment_ID()
     {
         fstream file;
-        file.open("users.dat", ios::in);
+        file.open("users.txt", ios::in);
         file.seekg(0, ios::end);
 
         if(file.tellg() == -1)
             return 0;
 
-        string s;
+        string key_search;
 
-        for(int i = -1; s.find("#") == string::npos; i--)
+        for(int i = -1; key_search.find("#") == string::npos; i--)
         {
             file.seekg(i, ios::end);
-            file >> s;
+            file >> key_search;
         }
 
         file.close();
-        s.erase(0, 4);
+        key_search.erase(0, 4);
 
-        int id;
-        istringstream(s) >> id;
+        int UID;
+        istringstream(key_search) >> UID;
 
-        return id;
+        return UID;
     }
 
-    int checkFile(string attempt, const char* p_fileName)
+    int content_check(string attempt, const char* file_name)
     {
         string line;
         fstream file;
 
-        string currentChar;
-        long long eChar;
+        string curr_char;
+        long long encrypt_function_char;
 
-        file.open(p_fileName, ios::in);
+        file.open(file_name, ios::in);
         
         while(1)
         {
-            file >> currentChar;
-            if(currentChar.find("#ID:") != string::npos)
+            file >> curr_char;
+            if(curr_char.find("#ID:") != string::npos)
             {
                 if(attempt == line)
                 {
                     file.close();
-                    currentChar.erase(0, 4);
-                    int id;
-                    istringstream(currentChar) >> id;
-                    return id;
+                    curr_char.erase(0, 4);
+                    int UID;
+                    istringstream(curr_char) >> UID;
+                    return UID;
                 }
                 else
                 {
@@ -113,9 +120,9 @@ class LoginManager
             }
             else
             {
-                istringstream(currentChar) >> eChar;
-                line += (char)decrypt(eChar);
-                currentChar = "";
+                istringstream(curr_char) >> encrypt_function_char;
+                line += (char)decrypt_func(encrypt_function_char);
+                curr_char = "";
             }
 
             if(file.peek() == EOF)
@@ -126,10 +133,10 @@ class LoginManager
         }
     }
 
-    void saveFile(string p_line, const char* p_fileName, const int& id)
+    void saveFile(string line_file, const char* file_name, const int& UID)
     {
         fstream file;
-        file.open(p_fileName, ios::app);
+        file.open(file_name, ios::app);
         file.seekg(0, ios::end);
 
         if(file.tellg() != 0)
@@ -137,34 +144,48 @@ class LoginManager
 
         file.seekg(0, ios::beg);
 
-        for(int i = 0; i < p_line.length(); i++)
+        for(int i = 0; i < line_file.length(); i++)
         {
-            file << encrypt(p_line[i]);
+            file << encrypt_func(line_file[i]);
             file << "\n";
         }
 
-        file << "#ID:" << id;
+        file << "#ID:" << UID;
         file.close();
     }
 
-    long long encrypt(int p_letter)
+    long long encrypt_func(int letter_file)
     {
-        return powf(p_letter, 5) * 4 - 14;
+        return powf(letter_file, 5) * 4 - 14;
     }
-    int decrypt(long long p_letter)
+    int decrypt_func(long long letter_file)
     {
-        return powf((p_letter + 14) / 4, 1/5.f);
+        return powf((letter_file + 14) / 4, 1/5.f);
     }
+////
+void sign_up()
+{
+    cout << "Enter the account details. Remember your email it will be used as your username to log in!\nEmail: ";
+    cin >> email;
+    cout << "Password: ";
+    cin >> password;
+    user_add_to_file(email,password);
+}
 
 private:
-    string userNameAttempt;
-    string passwordAttempt;
-    bool accessGranted;
+    //string f_name;
+    //string l_name;
+    string email;
+    string password;
+    string answer;
+    string user_input_entered;
+    string pass_input_entered;
+    bool access;
 };
 
 int main()
 {
-    LoginManager app;
-    app.login();
+    Manager_Func auth;
+    auth.login_func();
     cin.get();
 }
