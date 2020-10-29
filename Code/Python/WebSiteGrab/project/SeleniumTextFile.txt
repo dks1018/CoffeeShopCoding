@@ -1,0 +1,104 @@
+I need the code to open webpage scrape 1 2 or 3 phone numbers from the page then do that on 9 more pages on the same url link 
+
+print the names and phone numbers in a dict 
+
+reset the page number to 0 
+
+move to the next url that is concatenated by addr_list and city_list incrementing 
+
+and then the loop runs like that until there is no more data in the addr and city list
+
+
+
+
+
+
+READ BELOW FOR MORE DETAILED DESCRIPTION
+
+
+
+
+
+
+
+
+outside the loop 
+import selenium 
+
+chromedriver variable 
+
+browser variable
+
+addr_list 
+city_list 
+                    Front                                           +                                        Middle  + City                  Backend + Page
+front of the url = "https://www.truepeoplesearch.com/details?streetaddress"(= + addr_list data point) #&citystatezip=(city_list data point)  &rid=0x
+
+iterate through the Page_Num = 0
+
+define/ Addr = 0  (for concatenating)
+
+define/ City_Zip = 0 (for concatenating)
+
+iterate through addr_list and city_list inc = 0
+
+
+
+inside the for loop
+the addr_list and the city_list has to be stepped through starting at data point 0 on both of them until list end
+
+both data points 0 for the addr_list and city_list need to be input into the url concatenation in the while loop 
+
+(once the while loop has run then both data points 1 for the addr_list and city_list need to be input into the url concatenation in the while loop)
+
+
+
+
+Inside the while loop
+concatenate and iterate the url
+
+Front                                           +          Address            +           Middle + City                  Backend + Page
+"https://www.truepeoplesearch.com/details?streetaddress"(= + addr_list data point) #&citystatezip=(city_list data point)  &rid=0x
+
+(the url has to use the front, addr list, city list and page number to concatenate the url) 
+
+(the url also needs to iterate through the page number 0,1,2,3,4,ect-9) 
+
+(then reset to 0 once it is has scraped data from page 9)
+
+url has to be called 
+
+webpage has to open   
+
+only the name of the person and the fort 3 phone numbers have to be scraped off of the page 
+
+if page has no phone numbers code needs to continue
+
+enter name and phone numbers in dictionary, even if there is only one or two phone numbers 
+
+record them in a dictionary 
+
+
+
+
+P.S.(MUST READ)
+
+
+if bot pops up when the url is changed and the loop runs again(hasn't been done yet this if you can get it to work)
+
+then the page has to be closed and a new one opened for every new url being concatenated opened and scraped
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
